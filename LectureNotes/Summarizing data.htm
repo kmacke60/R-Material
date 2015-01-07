@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Summarizing data</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Summarizing data">
+  <meta name="author" content="Jeffrey Leek">
+  <meta name="generator" content="slidify">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="Summarizing%20data_files/default.css" media="all">
+  <link rel="stylesheet" href="Summarizing%20data_files/phone.htm" media="only screen and (max-device-width: 480px)">
+  <link rel="stylesheet" href="Summarizing%20data_files/slidify.css">
+  <link rel="stylesheet" href="Summarizing%20data_files/tomorrow.css">
+  <script src="Summarizing%20data_files/slides.js" data-requiremodule="slides" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="Summarizing%20data_files/order.js" data-requiremodule="order" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="Summarizing%20data_files/slide_config.js" data-requiremodule="slide_config" data-requirecontext="_" charset="utf-8" type="text/javascript"></script><script src="Summarizing%20data_files/modernizr.js" data-requiremodule="modernizr.custom.45394" data-requirecontext="_" charset="utf-8" type="text/javascript"></script><script src="Summarizing%20data_files/prettify.js" data-requiremodule="prettify/prettify" data-requirecontext="_" charset="utf-8" type="text/javascript"></script><script src="Summarizing%20data_files/hammer.js" data-requiremodule="hammer" data-requirecontext="_" charset="utf-8" type="text/javascript"></script><script src="Summarizing%20data_files/slide-controller.js" data-requiremodule="slide-controller" data-requirecontext="_" charset="utf-8" type="text/javascript"></script><script src="Summarizing%20data_files/slide-deck.js" data-requiremodule="slide-deck" data-requirecontext="_" charset="utf-8" type="text/javascript"></script><!-- base href="http://jtleek.com/modules/03_GettingData/03_02_summarizingData/" --> <!-- This amazingness opens all links in a new tab. -->
+  <script data-main="../../libraries/frameworks/io2012/js/slides" src="Summarizing%20data_files/require-1.js">
+  </script>
+  
+    <link rel="stylesheet" href="Summarizing%20data_files/custom_003.css">
+<link rel="stylesheet" href="Summarizing%20data_files/custom_002.css">
+<link rel="stylesheet" href="Summarizing%20data_files/custom_004.css">
+<link rel="stylesheet" href="Summarizing%20data_files/custom.css">
+<link rel="stylesheet" href="Summarizing%20data_files/custom.orig">
+<link rel="stylesheet" href="Summarizing%20data_files/custom_005.css">
+<link rel="stylesheet" href="Summarizing%20data_files/ribbons.css">
+
+<style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Hover_Arrow {position: absolute; width: 15px; height: 11px; cursor: pointer}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuTitle {background-color: #CCCCCC; margin: -1px -1px 1px -1px; text-align: center; font-style: italic; font-size: 80%; color: #444444; padding: 2px 0; overflow: hidden}
+.MathJax_MenuArrow {position: absolute; right: .5em; color: #666666}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_Menu_Close {position: absolute; width: 31px; height: 31px; top: -15px; left: -15px}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1px; bottom: 2px; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><link href="http://jtleek.com/modules/03_GettingData/03_02_summarizingData/images/google_developers_logo_tiny.png" type="image/png" rel="icon"><link href="Summarizing%20data_files/css.css" rel="stylesheet"></head>
+<body class="loaded popup" style="opacity: 0"><div style="display: none;" id="MathJax_Message"></div>
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+    <!-- END LOGO SLIDE -->
+    
+
+    <!-- TITLE SLIDE -->
+    <!-- Should I move this to a Local Layout File? -->
+    <slide data-total-slides="18" data-slide-num="1" class="title-slide segue nobackground">
+      <aside class="gdbar">
+        <img src="Summarizing%20data_files/bloomberg_shield.png">
+      </aside>
+      <hgroup class="auto-fadein">
+        <h1>Summarizing data</h1>
+        <h2></h2>
+        <p>Jeffrey Leek<br>Johns Hopkins Bloomberg School of Public Health</p>
+      </hgroup>
+          </slide>
+
+    <!-- SLIDES -->
+      <slide data-total-slides="18" data-slide-num="2" class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Example data set</h2>
+  </hgroup>
+  <article>
+    <p><img class="center" src="Summarizing%20data_files/restaurants.png" height="500"></p>
+
+<p><a href="https://data.baltimorecity.gov/Community/Restaurants/k5ry-ef3g">https://data.baltimorecity.gov/Community/Restaurants/k5ry-ef3g</a></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide data-total-slides="18" data-slide-num="3" class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>Getting the data from the web</h2>
+  </hgroup>
+  <article>
+    <pre><code class="r"><span class="keyword">if</span>(!file.exists(<span class="string">"./data"</span>)){dir.create(<span class="string">"./data"</span>)}
+fileUrl &lt;- <span class="string">"https://data.baltimorecity.gov/api/views/k5ry-ef3g/rows.csv?accessType=DOWNLOAD"</span>
+download.file(fileUrl,destfile=<span class="string">"./data/restaurants.csv"</span>,method=<span class="string">"curl"</span>)
+restData &lt;- read.csv(<span class="string">"./data/restaurants.csv"</span>)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide data-total-slides="18" data-slide-num="4" class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>Look at a bit of the data</h2>
+  </hgroup>
+  <article>
+    <pre><code class="r">head(restData,n=<span class="number">3</span>)
+</code></pre>
+
+<pre><code class="tex">   name zipCode neighborhood councilDistrict policeDistrict                        Location.1
+1   410   21206    Frankford               2   NORTHEASTERN 4509 BELAIR ROAD<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+2  1919   21231  Fells Point               1   SOUTHEASTERN    1919 FLEET ST<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+3 SAUTE   21224       Canton               1   SOUTHEASTERN   2844 HUDSON ST<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+</code></pre>
+
+<pre><code class="r">tail(restData,n=<span class="number">3</span>)
+</code></pre>
+
+<pre><code class="tex">                 name zipCode  neighborhood councilDistrict policeDistrict
+1325 ZINK'S CAF<span class="command">\u</span>0090   21213 Belair-Edison              13   NORTHEASTERN
+1326     ZISSIMOS BAR   21211       Hampden               7       NORTHERN
+1327           ZORBAS   21224     Greektown               2   SOUTHEASTERN
+                             Location.1
+1325 3300 LAWNVIEW AVE<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+1326      1023 36TH ST<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+1327  4710 EASTERN Ave<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide data-total-slides="18" data-slide-num="5" class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Make summary</h2>
+  </hgroup>
+  <article>
+    <pre><code class="r">summary(restData)
+</code></pre>
+
+<pre><code class="tex">                           name         zipCode             neighborhood councilDistrict
+ MCDONALD'S                  :   8   Min.   :-21226   Downtown    :128   Min.   : 1.00  
+ POPEYES FAMOUS FRIED CHICKEN:   7   1st Qu.: 21202   Fells Point : 91   1st Qu.: 2.00  
+ SUBWAY                      :   6   Median : 21218   Inner Harbor: 89   Median : 9.00  
+ KENTUCKY FRIED CHICKEN      :   5   Mean   : 21185   Canton      : 81   Mean   : 7.19  
+ BURGER KING                 :   4   3rd Qu.: 21226   Federal Hill: 42   3rd Qu.:11.00  
+ DUNKIN DONUTS               :   4   Max.   : 21287   Mount Vernon: 33   Max.   :14.00  
+ (Other)                     :1293                    (Other)     :863                  
+      policeDistrict                        Location.1      
+ SOUTHEASTERN:385    1101 RUSSELL ST<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>:   9  
+ CENTRAL     :288    201 PRATT ST<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>   :   8  
+ SOUTHERN    :213    2400 BOSTON ST<span class="command">\nBaltimore</span>, MD<span class="command">\n</span> :   8  
+ NORTHERN    :157    300 LIGHT ST<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>   :   5  
+ NORTHEASTERN: 72    300 CHARLES ST<span class="command">\nBaltimore</span>, MD<span class="command">\n</span> :   4  
+ EASTERN     : 67    301 LIGHT ST<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>   :   4  
+ (Other)     :145    (Other)                         :1289  
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide data-total-slides="18" data-slide-num="6" class="far-past" id="slide-5" style="background:;">
+  <hgroup>
+    <h2>Mpre in depth information</h2>
+  </hgroup>
+  <article>
+    <pre><code class="r">str(restData)
+</code></pre>
+
+<pre><code class="r"><span class="string">'data.frame'</span>:   <span class="number">1327</span> obs. of  <span class="number">6</span> variables:
+ $ name           : Factor w/ <span class="number">1277</span> levels <span class="string">"#1 CHINESE KITCHEN"</span>,..: <span class="number">9</span> <span class="number">3</span> <span class="number">992</span> <span class="number">1</span> <span class="number">2</span> <span class="number">4</span> <span class="number">5</span> <span class="number">6</span> <span class="number">7</span> <span class="number">8</span> <span class="keyword">...</span>
+ $ zipCode        : int  <span class="number">21206</span> <span class="number">21231</span> <span class="number">21224</span> <span class="number">21211</span> <span class="number">21223</span> <span class="number">21218</span> <span class="number">21205</span> <span class="number">21211</span> <span class="number">21205</span> <span class="number">21231</span> <span class="keyword">...</span>
+ $ neighborhood   : Factor w/ <span class="number">173</span> levels <span class="string">"Abell"</span>,<span class="string">"Arlington"</span>,..: <span class="number">53</span> <span class="number">52</span> <span class="number">18</span> <span class="number">66</span> <span class="number">104</span> <span class="number">33</span> <span class="number">98</span> <span class="number">133</span> <span class="number">98</span> <span class="number">157</span> <span class="keyword">...</span>
+ $ councilDistrict: int  <span class="number">2</span> <span class="number">1</span> <span class="number">1</span> <span class="number">14</span> <span class="number">9</span> <span class="number">14</span> <span class="number">13</span> <span class="number">7</span> <span class="number">13</span> <span class="number">1</span> <span class="keyword">...</span>
+ $ policeDistrict : Factor w/ <span class="number">9</span> levels <span class="string">"CENTRAL"</span>,<span class="string">"EASTERN"</span>,..: <span class="number">3</span> <span class="number">6</span> <span class="number">6</span> <span class="number">4</span> <span class="number">8</span> <span class="number">3</span> <span class="number">6</span> <span class="number">4</span> <span class="number">6</span> <span class="number">6</span> <span class="keyword">...</span>
+ $ Location.1     : Factor w/ <span class="number">1210</span> levels <span class="string">"1 BIDDLE ST\nBaltimore, MD\n"</span>,..: <span class="number">835</span> <span class="number">334</span> <span class="number">554</span> <span class="number">755</span> <span class="number">492</span> <span class="number">537</span> <span class="number">505</span> <span class="number">530</span> <span class="number">507</span> <span class="number">569</span> <span class="keyword">...</span>
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide data-total-slides="18" data-slide-num="7" class="past" id="slide-6" style="background:;">
+  <hgroup>
+    <h2>Quantiles of quantitative variables</h2>
+  </hgroup>
+  <article>
+    <pre><code class="r">quantile(restData$councilDistrict,na.rm=<span class="literal">TRUE</span>)
+</code></pre>
+
+<pre><code class="erlang_repl">  <span class="number">0</span><span class="comment">%  25%  50%  75% 100% </span>
+   <span class="number">1</span>    <span class="number">2</span>    <span class="number">9</span>   <span class="number">11</span>   <span class="number">14</span> 
+</code></pre>
+
+<pre><code class="r">quantile(restData$councilDistrict,probs=c(<span class="number">0.5</span>,<span class="number">0.75</span>,<span class="number">0.9</span>))
+</code></pre>
+
+<pre><code class="erlang_repl"><span class="number">50</span><span class="comment">% 75% 90% </span>
+  <span class="number">9</span>  <span class="number">11</span>  <span class="number">12</span> 
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide data-total-slides="18" data-slide-num="8" class="current" id="slide-7" style="background:;">
+  <hgroup>
+    <h2>Make table</h2>
+  </hgroup>
+  <article>
+    <pre><code class="r">table(restData$zipCode,useNA=<span class="string">"ifany"</span>)
+</code></pre>
+
+<pre><code class="lisp">
+<span class="number">-21226</span>  <span class="number">21201</span>  <span class="number">21202</span>  <span class="number">21205</span>  <span class="number">21206</span>  <span class="number">21207</span>  <span class="number">21208</span>  <span class="number">21209</span>  <span class="number">21210</span>  <span class="number">21211</span>  <span class="number">21212</span>  <span class="number">21213</span>  <span class="number">21214</span>  <span class="number">21215</span> 
+     <span class="number">1</span>    <span class="number">136</span>    <span class="number">201</span>     <span class="number">27</span>     <span class="number">30</span>      <span class="number">4</span>      <span class="number">1</span>      <span class="number">8</span>     <span class="number">23</span>     <span class="number">41</span>     <span class="number">28</span>     <span class="number">31</span>     <span class="number">17</span>     <span class="number">54</span> 
+ <span class="number">21216</span>  <span class="number">21217</span>  <span class="number">21218</span>  <span class="number">21220</span>  <span class="number">21222</span>  <span class="number">21223</span>  <span class="number">21224</span>  <span class="number">21225</span>  <span class="number">21226</span>  <span class="number">21227</span>  <span class="number">21229</span>  <span class="number">21230</span>  <span class="number">21231</span>  <span class="number">21234</span> 
+    <span class="number">10</span>     <span class="number">32</span>     <span class="number">69</span>      <span class="number">1</span>      <span class="number">7</span>     <span class="number">56</span>    <span class="number">199</span>     <span class="number">19</span>     <span class="number">18</span>      <span class="number">4</span>     <span class="number">13</span>    <span class="number">156</span>    <span class="number">127</span>      <span class="number">7</span> 
+ <span class="number">21237</span>  <span class="number">21239</span>  <span class="number">21251</span>  <span class="number">21287</span> 
+     <span class="number">1</span>      <span class="number">3</span>      <span class="number">2</span>      <span class="number">1</span> 
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide data-total-slides="18" data-slide-num="9" class="next" id="slide-8" style="background:;">
+  <hgroup>
+    <h2>Make table</h2>
+  </hgroup>
+  <article>
+    <pre><code class="r">table(restData$councilDistrict,restData$zipCode)
+</code></pre>
+
+<pre><code class="lisp">
+     <span class="number">-21226</span> <span class="number">21201</span> <span class="number">21202</span> <span class="number">21205</span> <span class="number">21206</span> <span class="number">21207</span> <span class="number">21208</span> <span class="number">21209</span> <span class="number">21210</span> <span class="number">21211</span> <span class="number">21212</span> <span class="number">21213</span> <span class="number">21214</span> <span class="number">21215</span> <span class="number">21216</span>
+  <span class="number">1</span>       <span class="number">0</span>     <span class="number">0</span>    <span class="number">37</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">2</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>
+  <span class="number">2</span>       <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">3</span>    <span class="number">27</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>
+  <span class="number">3</span>       <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">2</span>    <span class="number">17</span>     <span class="number">0</span>     <span class="number">0</span>
+  <span class="number">4</span>       <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>    <span class="number">27</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>
+  <span class="number">5</span>       <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">3</span>     <span class="number">0</span>     <span class="number">6</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>    <span class="number">31</span>     <span class="number">0</span>
+  <span class="number">6</span>       <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">1</span>    <span class="number">19</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>    <span class="number">15</span>     <span class="number">1</span>
+  <span class="number">7</span>       <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">1</span>     <span class="number">0</span>    <span class="number">27</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">6</span>     <span class="number">7</span>
+  <span class="number">8</span>       <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">1</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>
+  <span class="number">9</span>       <span class="number">0</span>     <span class="number">1</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">2</span>
+  <span class="number">10</span>      <span class="number">1</span>     <span class="number">0</span>     <span class="number">1</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>
+  <span class="number">11</span>      <span class="number">0</span>   <span class="number">115</span>   <span class="number">139</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">1</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">1</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>
+  <span class="number">12</span>      <span class="number">0</span>    <span class="number">20</span>    <span class="number">24</span>     <span class="number">4</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>    <span class="number">13</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>
+  <span class="number">13</span>      <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>    <span class="number">20</span>     <span class="number">3</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>    <span class="number">13</span>     <span class="number">0</span>     <span class="number">1</span>     <span class="number">0</span>
+  <span class="number">14</span>      <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">4</span>    <span class="number">14</span>     <span class="number">0</span>     <span class="number">1</span>     <span class="number">0</span>     <span class="number">1</span>     <span class="number">0</span>
+
+     <span class="number">21217</span> <span class="number">21218</span> <span class="number">21220</span> <span class="number">21222</span> <span class="number">21223</span> <span class="number">21224</span> <span class="number">21225</span> <span class="number">21226</span> <span class="number">21227</span> <span class="number">21229</span> <span class="number">21230</span> <span class="number">21231</span> <span class="number">21234</span> <span class="number">21237</span> <span class="number">21239</span>
+  <span class="number">1</span>      <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">7</span>     <span class="number">0</span>   <span class="number">140</span>     <span class="number">1</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">1</span>   <span class="number">124</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>
+  <span class="number">2</span>      <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>    <span class="number">54</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">1</span>     <span class="number">0</span>
+  <span class="number">3</span>      <span class="number">0</span>     <span class="number">3</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">1</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">7</span>     <span class="number">0</span>     <span class="number">0</span>
+  <span class="number">4</span>      <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">3</span>
+  <span class="number">5</span>      <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>
+  <span class="number">6</span>      <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>
+  <span class="number">7</span>     <span class="number">15</span>     <span class="number">6</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>
+  <span class="number">8</span>      <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">2</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">2</span>    <span class="number">13</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>
+  <span class="number">9</span>      <span class="number">8</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>    <span class="number">53</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>    <span class="number">11</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>
+  <span class="number">10</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">1</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>    <span class="number">18</span>    <span class="number">18</span>     <span class="number">0</span>     <span class="number">0</span>   <span class="number">133</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>
+  <span class="number">11</span>     <span class="number">9</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">1</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>    <span class="number">11</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>
+  <span class="number">12</span>     <span class="number">0</span>    <span class="number">26</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">2</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>
+  <span class="number">13</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">5</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">1</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">1</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>
+  <span class="number">14</span>     <span class="number">0</span>    <span class="number">34</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>
+
+     <span class="number">21251</span> <span class="number">21287</span>
+  <span class="number">1</span>      <span class="number">0</span>     <span class="number">0</span>
+  <span class="number">2</span>      <span class="number">0</span>     <span class="number">0</span>
+  <span class="number">3</span>      <span class="number">2</span>     <span class="number">0</span>
+  <span class="number">4</span>      <span class="number">0</span>     <span class="number">0</span>
+  <span class="number">5</span>      <span class="number">0</span>     <span class="number">0</span>
+  <span class="number">6</span>      <span class="number">0</span>     <span class="number">0</span>
+  <span class="number">7</span>      <span class="number">0</span>     <span class="number">0</span>
+  <span class="number">8</span>      <span class="number">0</span>     <span class="number">0</span>
+  <span class="number">9</span>      <span class="number">0</span>     <span class="number">0</span>
+  <span class="number">10</span>     <span class="number">0</span>     <span class="number">0</span>
+  <span class="number">11</span>     <span class="number">0</span>     <span class="number">0</span>
+  <span class="number">12</span>     <span class="number">0</span>     <span class="number">0</span>
+  <span class="number">13</span>     <span class="number">0</span>     <span class="number">1</span>
+  <span class="number">14</span>     <span class="number">0</span>     <span class="number">0</span>
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide data-total-slides="18" data-slide-num="10" class="far-next" id="slide-9" style="background:;">
+  <hgroup>
+    <h2>Check for missing values</h2>
+  </hgroup>
+  <article>
+    <pre><code class="r">sum(is.na(restData$councilDistrict))
+</code></pre>
+
+<pre><code class="json">[<span class="number">1</span>] <span class="number">0</span>
+</code></pre>
+
+<pre><code class="r">any(is.na(restData$councilDistrict))
+</code></pre>
+
+<pre><code class="css"><span class="attr_selector">[1]</span> <span class="tag">FALSE</span>
+</code></pre>
+
+<pre><code class="r">all(restData$zipCode &gt; <span class="number">0</span>)
+</code></pre>
+
+<pre><code class="css"><span class="attr_selector">[1]</span> <span class="tag">FALSE</span>
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide data-total-slides="18" data-slide-num="11" class="" id="slide-10" style="background:;">
+  <hgroup>
+    <h2>Row and column sums</h2>
+  </hgroup>
+  <article>
+    <pre><code class="r">colSums(is.na(restData))
+</code></pre>
+
+<pre><code class="profile">           name         zipCode    neighborhood councilDistrict  policeDistrict      <span class="filename">Location.1 
+              0               0               0               0               0               0 
+</span></code></pre>
+
+<pre><code class="r">all(colSums(is.na(restData))==<span class="number">0</span>)
+</code></pre>
+
+<pre><code class="css"><span class="attr_selector">[1]</span> <span class="tag">TRUE</span>
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide data-total-slides="18" data-slide-num="12" class="" id="slide-11" style="background:;">
+  <hgroup>
+    <h2>Values with specific characteristics</h2>
+  </hgroup>
+  <article>
+    <pre><code class="r">table(restData$zipCode %<span class="keyword">in</span>% c(<span class="string">"21212"</span>))
+</code></pre>
+
+<pre><code class="objectivec">
+<span class="literal">FALSE</span>  <span class="literal">TRUE</span> 
+ <span class="number">1299</span>    <span class="number">28</span> 
+</code></pre>
+
+<pre><code class="r">table(restData$zipCode %<span class="keyword">in</span>% c(<span class="string">"21212"</span>,<span class="string">"21213"</span>))
+</code></pre>
+
+<pre><code class="objectivec">
+<span class="literal">FALSE</span>  <span class="literal">TRUE</span> 
+ <span class="number">1268</span>    <span class="number">59</span> 
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide data-total-slides="18" data-slide-num="13" class="" id="slide-12" style="background:;">
+  <hgroup>
+    <h2>Values with specific characteristics</h2>
+  </hgroup>
+  <article>
+    <pre><code class="r">restData[restData$zipCode %<span class="keyword">in</span>% c(<span class="string">"21212"</span>,<span class="string">"21213"</span>),]
+</code></pre>
+
+<pre><code class="tex">                                     name zipCode                neighborhood councilDistrict
+29                      BAY ATLANTIC CLUB   21212                    Downtown              11
+39                            BERMUDA BAR   21213               Broadway East              12
+92                              ATWATER'S   21212   Chinquapin Park-Belvedere               4
+111            BALTIMORE ESTONIAN SOCIETY   21213          South Clifton Park              12
+187                              CAFE ZEN   21212                    Rosebank               4
+220                   CERIELLO FINE FOODS   21212   Chinquapin Park-Belvedere               4
+266    CLIFTON PARK GOLF COURSE SNACK BAR   21213                 Darley Park              14
+276                CLUB HOUSE BAR <span class="special">&amp;</span> GRILL   21213 Orangeville Industrial Area              13
+289                 CLUBHOUSE BAR <span class="special">&amp;</span> GRILL   21213 Orangeville Industrial Area              13
+291                           COCKY LOU'S   21213               Broadway East              12
+362       DREAM TAVERN, CARRIBEAN  U.S.A.   21213               Broadway East              13
+373                         DUNKIN DONUTS   21212                    Homeland               4
+383        EASTSIDE  SPORTS  SOCIAL  CLUB   21213               Broadway East              13
+417                      FIELDS OLD TRAIL   21212                  Mid-Govans               4
+475                             GRAND CRU   21212   Chinquapin Park-Belvedere               4
+545                           RANDY'S BAR   21213               Broadway East              12
+604     MURPHY'S NEIGHBORHOOD BAR <span class="special">&amp;</span> GRILL   21212                  Mid-Govans               4
+616                                NEOPOL   21212   Chinquapin Park-Belvedere               4
+620             NEW CLUB THUNDERBIRD INC.   21213                 Middle East              13
+626                    NEW MAYFIELD, INC.   21213               Belair-Edison              13
+678                          IKAN SEAFOOD   21212   Chinquapin Park-Belvedere               4
+711                          KAY-CEE CLUB   21212                    Homeland               4
+763                                LA'RAE   21213                      Oliver              12
+777                  LEMONGRASS BALTIMORE   21213                Little Italy               1
+779                   LEN'S SANDWICH SHOP   21213               Broadway East              12
+845                            MCDONALD'S   21213          South Clifton Park              12
+852                            MCDONALD'S   21212              Radnor-Winston               4
+873                  NEW REX LIQUORS,INC.   21212                 Wilson Park               4
+895                             OK TAVERN   21213               Biddle Street              13
+919                          PANERA BREAD   21212                 Lake Walker               4
+940                    PEIWEI ASIAN DINER   21212                  Cedarcroft               4
+949                   PERGUSA ENTERPRISES   21212                    Rosebank               4
+957               PHANTOM'S BAR AND GRILL   21213               Belair-Edison               3
+976          POPEYES FAMOUS FRIED CHICKEN   21212              Winston-Govans               4
+994                         ROBBIE'S NEST   21213               Broadway East              12
+1017                          RUTLAND BAR   21213               Broadway East              12
+1018                      RYAN'S DAUGHTER   21212   Chinquapin Park-Belvedere               4
+1022         saigon remembered restaurant   21212                  Mid-Govans               4
+1053                SHIRLEY'S  HONEY HOLE   21213               Broadway East              13
+1120                     STEEPLE CHASE II   21213               Biddle Street              13
+1122                               SUBWAY   21213                      Oliver              12
+1153                              TAM-TAM   21212                  Mid-Govans               4
+1155                                TASTE   21212                  Mid-Govans               4
+1159                         TAYLORS EAST   21213                       Berea              13
+1186                THE EDGE BAR <span class="special">&amp;</span> LOUNGE   21213               Broadway East              12
+1187 THE EDGE BAR <span class="special">&amp;</span> LOUNGE - KITCHEN AREA   21213               Broadway East              12
+1198               THE HOLLOW BAR <span class="special">&amp;</span> GRILL   21212                    Rosebank               4
+1209             THE NEW BUCKETT'S LOUNGE   21213               Broadway East              13
+1232                         THREE  ACE'S   21213               Belair-Edison               3
+1246                 TORAIN'S  HIDE-A-WAY   21213               Broadway East              12
+1259                    TSUNAMI BALTIMORE   21213                Little Italy               1
+1287                         VITO'S PIZZA   21212                  Cedarcroft               4
+1298 WENDY'S OLD FASHIONED HAMBURGERS <span class="special">#</span>96   21212                    Homeland               4
+1304                 WHITTEN'S  (4502-04)   21213           Claremont-Freedom              13
+1312                          wozi lounge   21212                    Guilford               4
+1319           YETI RESTAURANT <span class="special">&amp;</span> CARRYOUT   21212                    Rosebank               4
+1320                     YORK CLUB TAVERN   21212                    Homeland               4
+1323            ZEN WEST ROADSIDE CANTINA   21212                    Rosebank               4
+1325                     ZINK'S CAF<span class="command">\u</span>0090   21213               Belair-Edison              13
+     policeDistrict                           Location.1
+29          CENTRAL      206 REDWOOD ST<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+39          EASTERN      1801 NORTH AVE<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+92         NORTHERN   529 BELVEDERE AVE<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+111         EASTERN      1932 BELAIR RD<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+187        NORTHERN   438 BELVEDERE AVE<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+220        NORTHERN   529 BELVEDERE AVE<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+266    NORTHEASTERN       2701 ST LO DR<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+276         EASTERN     4217 ERDMAN AVE<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+289         EASTERN     4217 ERDMAN AVE<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+291         EASTERN      2101 NORTH AVE<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+362         EASTERN  2300 LAFAYETTE AVE<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+373        NORTHERN        5422 YORK RD<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+383         EASTERN 1203 COLLINGTON AVE<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+417        NORTHERN        5723 YORK RD<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+475        NORTHERN   527 BELVEDERE AVE<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+545         EASTERN      2135 NORTH AVE<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+604        NORTHERN        5847 YORK RD<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+616        NORTHERN   529 BELVEDERE AVE<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+620         EASTERN       2201 CHASE ST<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+626    NORTHEASTERN      3349 BELAIR RD<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+678        NORTHERN   529 BELVEDERE AVE<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+711        NORTHERN    201 HOMELAND AVE<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+763         EASTERN     1000 HOFFMAN ST<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+777    SOUTHEASTERN    1300 BANK STREET<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+779         EASTERN  1500 WASHINGTON ST<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+845         EASTERN       2001 BROADWAY<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+852        NORTHERN        5100 YORK RD<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+873        NORTHERN        4637 YORK RD<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+895         EASTERN      2301 BIDDLE ST<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+919        NORTHERN    6307 1 2 YORK RD<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+940        NORTHERN        6302 YORK RD<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+949        NORTHERN        5928 YORK RD<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+957    NORTHEASTERN      3539 BELAIR RD<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+976        NORTHERN        5002 YORK RD<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+994         EASTERN      2250 NORTH AVE<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+1017        EASTERN    1508 RUTLAND AVE<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+1018       NORTHERN   600 BELVEDERE AVE<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+1022       NORTHERN        5857 york rd<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+1053        EASTERN      2300 OLIVER ST<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+1120        EASTERN       2401 CHASE ST<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+1122        EASTERN      1400 NORTH AVE<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+1153       NORTHERN        5722 YORK RD<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+1155       NORTHERN   510 BELVEDERE AVE<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+1159        EASTERN     1201 POTOMAC ST<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+1186        EASTERN     2015 FEDERAL ST<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+1187        EASTERN     2015 FEDERAL ST<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+1198       NORTHERN        5921 YORK RD<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+1209        EASTERN     1432 CHESTER ST<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+1232   NORTHEASTERN      3534 belair RD<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+1246        EASTERN   1701 ELLSWORTH ST<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+1259   SOUTHEASTERN        1300 BANK ST<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+1287       NORTHERN        6304 YORK RD<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+1298       NORTHERN        5615 YORK RD<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+1304   NORTHEASTERN     4502 ERDMAN AVE<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+1312       NORTHERN        4515 YORK RD<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+1319       NORTHERN        5926 YORK RD<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+1320       NORTHERN        5407 YORK RD<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+1323       NORTHERN        5916 YORK RD<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+1325   NORTHEASTERN   3300 LAWNVIEW AVE<span class="command">\nBaltimore</span>, MD<span class="command">\n</span>
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide data-total-slides="18" data-slide-num="14" class="" id="slide-13" style="background:;">
+  <hgroup>
+    <h2>Cross tabs</h2>
+  </hgroup>
+  <article>
+    <pre><code class="r">data(UCBAdmissions)
+DF = as.data.frame(UCBAdmissions)
+summary(DF)
+</code></pre>
+
+<pre><code class="css">      <span class="tag">Admit</span>       <span class="tag">Gender</span>   <span class="tag">Dept</span>       <span class="tag">Freq</span>    
+ <span class="tag">Admitted</span><span class="pseudo">:12</span>   <span class="tag">Male</span>  <span class="pseudo">:12</span>   <span class="tag">A</span><span class="pseudo">:4</span>   <span class="tag">Min</span>.   :  8  
+ <span class="tag">Rejected</span><span class="pseudo">:12</span>   <span class="tag">Female</span><span class="pseudo">:12</span>   <span class="tag">B</span><span class="pseudo">:4</span>   1<span class="tag">st</span> <span class="tag">Qu</span>.: 80  
+                           <span class="tag">C</span><span class="pseudo">:4</span>   <span class="tag">Median</span> <span class="pseudo">:170</span>  
+                           <span class="tag">D</span><span class="pseudo">:4</span>   <span class="tag">Mean</span>   <span class="pseudo">:189</span>  
+                           <span class="tag">E</span><span class="pseudo">:4</span>   3<span class="tag">rd</span> <span class="tag">Qu</span>.<span class="pseudo">:302</span>  
+                           <span class="tag">F</span><span class="pseudo">:4</span>   <span class="tag">Max</span>.   <span class="pseudo">:512</span>  
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide data-total-slides="18" data-slide-num="15" class="" id="slide-14" style="background:;">
+  <hgroup>
+    <h2>Cross tabs</h2>
+  </hgroup>
+  <article>
+    <pre><code class="r">xt &lt;- xtabs(Freq ~ Gender + Admit,data=DF)
+xt
+</code></pre>
+
+<pre><code class="undefined">        Admit
+Gender   Admitted Rejected
+  Male       1198     1493
+  Female      557     1278
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide data-total-slides="18" data-slide-num="16" class="" id="slide-15" style="background:;">
+  <hgroup>
+    <h2>Flat tables</h2>
+  </hgroup>
+  <article>
+    <pre><code class="r">warpbreaks$replicate &lt;- rep(<span class="number">1</span>:<span class="number">9</span>, len = <span class="number">54</span>)
+xt = xtabs(breaks ~.,data=warpbreaks)
+xt
+</code></pre>
+
+<pre><code class="erlang">, , replicate = <span class="number">1</span>
+
+    tension
+<span class="function"><span class="title">wool</span>  L  M  H
+   A 26 18 36
+   B 27 42 20
+
+, , <span class="title">replicate</span> = 2
+
+    <span class="title">tension</span>
+<span class="title">wool</span>  L  M  H
+   A 30 21 21
+   B 14 26 21
+
+, , <span class="title">replicate</span> = 3
+
+    <span class="title">tension</span>
+<span class="title">wool</span>  L  M  H
+   A 54 29 24
+   B 29 19 24
+
+, , <span class="title">replicate</span> = 4
+
+    <span class="title">tension</span>
+<span class="title">wool</span>  L  M  H
+   A 25 17 18
+   B 19 16 17
+
+, , <span class="title">replicate</span> = 5
+
+    <span class="title">tension</span>
+<span class="title">wool</span>  L  M  H
+   A 70 12 10
+   B 29 39 13
+
+, , <span class="title">replicate</span> = 6
+
+    <span class="title">tension</span>
+<span class="title">wool</span>  L  M  H
+   A 52 18 43
+   B 31 28 15
+
+, , <span class="title">replicate</span> = 7
+
+    <span class="title">tension</span>
+<span class="title">wool</span>  L  M  H
+   A 51 35 28
+   B 41 21 15
+
+, , <span class="title">replicate</span> = 8
+
+    <span class="title">tension</span>
+<span class="title">wool</span>  L  M  H
+   A 26 30 15
+   B 20 39 16
+
+, , <span class="title">replicate</span> = 9
+
+    <span class="title">tension</span>
+<span class="title">wool</span>  L  M  H
+   A 67 36 26
+   B 44 29 28
+</span></code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide data-total-slides="18" data-slide-num="17" class="" id="slide-16" style="background:;">
+  <hgroup>
+    <h2>Flat tables</h2>
+  </hgroup>
+  <article>
+    <pre><code class="r">ftable(xt)
+</code></pre>
+
+<pre><code class="erlang">             replicate  <span class="number">1</span>  <span class="number">2</span>  <span class="number">3</span>  <span class="number">4</span>  <span class="number">5</span>  <span class="number">6</span>  <span class="number">7</span>  <span class="number">8</span>  <span class="number">9</span>
+<span class="function"><span class="title">wool</span> <span class="title">tension</span>                                     
+A    L                 26 30 54 25 70 52 51 26 67
+     M                 18 21 29 17 12 18 35 30 36
+     H                 36 21 24 18 10 43 28 15 26
+B    L                 27 14 29 19 29 31 41 20 44
+     M                 42 26 19 16 39 28 21 39 29
+     H                 20 21 24 17 13 15 15 16 28
+</span></code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide data-total-slides="18" data-slide-num="18" class="" id="slide-17" style="background:;">
+  <hgroup>
+    <h2>Size of a data set</h2>
+  </hgroup>
+  <article>
+    <pre><code class="r">fakeData = rnorm(<span class="number">1e5</span>)
+object.size(fakeData)
+</code></pre>
+
+<pre><code class="undefined">800040 bytes
+</code></pre>
+
+<pre><code class="r">print(object.size(fakeData),units=<span class="string">"Mb"</span>)
+</code></pre>
+
+<pre><code class="undefined">0.8 Mb
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  <div id="prev-slide-area" class="slide-area"></div><div id="next-slide-area" class="slide-area"></div></slides>
+
+  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+
+
+<script src="Summarizing%20data_files/jquery-1.js"></script>
+<script>window.jQuery || document.write('<script src="../../libraries/widgets/quiz/js/jquery-1.7.min.js"><\/script>')</script>
+<!-- Load Javascripts for Widgets -->
+<!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+<script type="text/x-mathjax-config;executed=true">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript" src="Summarizing%20data_files/MathJax.js"></script>
+<!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script> -->
+<script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="../../libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<!-- LOAD HIGHLIGHTER JS FILES -->
+<script src="Summarizing%20data_files/highlight.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<!-- DONE LOADING HIGHLIGHTER JS FILES -->
+</body><!-- Grab CDN jQuery, fall back to local if offline --></html>

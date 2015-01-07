@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Creating new variables</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Creating new variables">
+  <meta name="author" content="Jeffrey Leek">
+  <meta name="generator" content="slidify">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="Creating%20new%20variables_files/default.css" media="all">
+  <link rel="stylesheet" href="Creating%20new%20variables_files/phone.htm" media="only screen and (max-device-width: 480px)">
+  <link rel="stylesheet" href="Creating%20new%20variables_files/slidify.css">
+  <link rel="stylesheet" href="Creating%20new%20variables_files/tomorrow.css">
+  <script src="Creating%20new%20variables_files/slides.js" data-requiremodule="slides" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="Creating%20new%20variables_files/order.js" data-requiremodule="order" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="Creating%20new%20variables_files/slide_config.js" data-requiremodule="slide_config" data-requirecontext="_" charset="utf-8" type="text/javascript"></script><script src="Creating%20new%20variables_files/modernizr.js" data-requiremodule="modernizr.custom.45394" data-requirecontext="_" charset="utf-8" type="text/javascript"></script><script src="Creating%20new%20variables_files/prettify.js" data-requiremodule="prettify/prettify" data-requirecontext="_" charset="utf-8" type="text/javascript"></script><script src="Creating%20new%20variables_files/hammer.js" data-requiremodule="hammer" data-requirecontext="_" charset="utf-8" type="text/javascript"></script><script src="Creating%20new%20variables_files/slide-controller.js" data-requiremodule="slide-controller" data-requirecontext="_" charset="utf-8" type="text/javascript"></script><script src="Creating%20new%20variables_files/slide-deck.js" data-requiremodule="slide-deck" data-requirecontext="_" charset="utf-8" type="text/javascript"></script><!-- base href="http://jtleek.com/modules/03_GettingData/03_03_creatingNewVariables/" --> <!-- This amazingness opens all links in a new tab. -->
+  <script data-main="../../libraries/frameworks/io2012/js/slides" src="Creating%20new%20variables_files/require-1.js">
+  </script>
+  
+    <link rel="stylesheet" href="Creating%20new%20variables_files/custom_002.css">
+<link rel="stylesheet" href="Creating%20new%20variables_files/custom_004.css">
+<link rel="stylesheet" href="Creating%20new%20variables_files/custom_003.css">
+<link rel="stylesheet" href="Creating%20new%20variables_files/custom.css">
+<link rel="stylesheet" href="Creating%20new%20variables_files/custom.orig">
+<link rel="stylesheet" href="Creating%20new%20variables_files/custom_005.css">
+<link rel="stylesheet" href="Creating%20new%20variables_files/ribbons.css">
+
+<link href="http://jtleek.com/modules/03_GettingData/03_03_creatingNewVariables/images/google_developers_logo_tiny.png" type="image/png" rel="icon"><link href="Creating%20new%20variables_files/css.css" rel="stylesheet"><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Hover_Arrow {position: absolute; width: 15px; height: 11px; cursor: pointer}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuTitle {background-color: #CCCCCC; margin: -1px -1px 1px -1px; text-align: center; font-style: italic; font-size: 80%; color: #444444; padding: 2px 0; overflow: hidden}
+.MathJax_MenuArrow {position: absolute; right: .5em; color: #666666}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_Menu_Close {position: absolute; width: 31px; height: 31px; top: -15px; left: -15px}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1px; bottom: 2px; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style></head>
+<body class="loaded popup" style="opacity: 0"><div style="display: none;" id="MathJax_Message"></div>
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+    <!-- END LOGO SLIDE -->
+    
+
+    <!-- TITLE SLIDE -->
+    <!-- Should I move this to a Local Layout File? -->
+    <slide data-total-slides="15" data-slide-num="1" class="title-slide segue nobackground current">
+      <aside class="gdbar">
+        <img src="Creating%20new%20variables_files/bloomberg_shield.png">
+      </aside>
+      <hgroup class="auto-fadein">
+        <h1>Creating new variables</h1>
+        <h2></h2>
+        <p>Jeffrey Leek<br>Johns Hopkins Bloomberg School of Public Health</p>
+      </hgroup>
+          </slide>
+
+    <!-- SLIDES -->
+      <slide data-total-slides="15" data-slide-num="2" class="next" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Why create new variables?</h2>
+  </hgroup>
+  <article>
+    <ul>
+<li>Often the raw data won't have a value you are looking for</li>
+<li>You will need to transform the data to get the values you would like</li>
+<li>Usually you will add those values to the data frames you are working with</li>
+<li>Common variables to create
+
+<ul>
+<li>Missingness indicators</li>
+<li>"Cutting up" quantitative variables</li>
+<li>Applying transforms</li>
+</ul></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide data-total-slides="15" data-slide-num="3" class="far-next" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>Example data set</h2>
+  </hgroup>
+  <article>
+    <p><img class="center" src="Creating%20new%20variables_files/restaurants.png" height="500"></p>
+
+<p><a href="https://data.baltimorecity.gov/Community/Restaurants/k5ry-ef3g">https://data.baltimorecity.gov/Community/Restaurants/k5ry-ef3g</a></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide data-total-slides="15" data-slide-num="4" class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>Getting the data from the web</h2>
+  </hgroup>
+  <article>
+    <pre><code class="r"><span class="keyword">if</span>(!file.exists(<span class="string">"./data"</span>)){dir.create(<span class="string">"./data"</span>)}
+fileUrl &lt;- <span class="string">"https://data.baltimorecity.gov/api/views/k5ry-ef3g/rows.csv?accessType=DOWNLOAD"</span>
+download.file(fileUrl,destfile=<span class="string">"./data/restaurants.csv"</span>,method=<span class="string">"curl"</span>)
+restData &lt;- read.csv(<span class="string">"./data/restaurants.csv"</span>)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide data-total-slides="15" data-slide-num="5" class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Creating sequences</h2>
+  </hgroup>
+  <article>
+    <p><em>Sometimes you need an index for your data set</em></p>
+
+<pre><code class="r">s1 &lt;- seq(<span class="number">1</span>,<span class="number">10</span>,by=<span class="number">2</span>) ; s1
+</code></pre>
+
+<pre><code class="json">[<span class="number">1</span>] <span class="number">1</span> <span class="number">3</span> <span class="number">5</span> <span class="number">7</span> <span class="number">9</span>
+</code></pre>
+
+<pre><code class="r">s2 &lt;- seq(<span class="number">1</span>,<span class="number">10</span>,length=<span class="number">3</span>); s2
+</code></pre>
+
+<pre><code class="json">[<span class="number">1</span>]  <span class="number">1.0</span>  <span class="number">5.5</span> <span class="number">10.0</span>
+</code></pre>
+
+<pre><code class="r">x &lt;- c(<span class="number">1</span>,<span class="number">3</span>,<span class="number">8</span>,<span class="number">25</span>,<span class="number">100</span>); seq(along = x)
+</code></pre>
+
+<pre><code class="json">[<span class="number">1</span>] <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span>
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide data-total-slides="15" data-slide-num="6" class="" id="slide-5" style="background:;">
+  <hgroup>
+    <h2>Subsetting variables</h2>
+  </hgroup>
+  <article>
+    <pre><code class="r">restData$nearMe = restData$neighborhood %<span class="keyword">in</span>% c(<span class="string">"Roland Park"</span>, <span class="string">"Homeland"</span>)
+table(restData$nearMe)
+</code></pre>
+
+<pre><code class="objectivec">
+<span class="literal">FALSE</span>  <span class="literal">TRUE</span> 
+ <span class="number">1314</span>    <span class="number">13</span> 
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide data-total-slides="15" data-slide-num="7" class="" id="slide-6" style="background:;">
+  <hgroup>
+    <h2>Creating binary variables</h2>
+  </hgroup>
+  <article>
+    <pre><code class="r">restData$zipWrong = ifelse(restData$zipCode &lt; <span class="number">0</span>, <span class="literal">TRUE</span>, <span class="literal">FALSE</span>)
+table(restData$zipWrong,restData$zipCode &lt; <span class="number">0</span>)
+</code></pre>
+
+<pre><code class="objectivec">
+        <span class="literal">FALSE</span> <span class="literal">TRUE</span>
+  <span class="literal">FALSE</span>  <span class="number">1326</span>    <span class="number">0</span>
+  <span class="literal">TRUE</span>      <span class="number">0</span>    <span class="number">1</span>
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide data-total-slides="15" data-slide-num="8" class="" id="slide-7" style="background:;">
+  <hgroup>
+    <h2>Creating categorical variables</h2>
+  </hgroup>
+  <article>
+    <pre><code class="r">restData$zipGroups = cut(restData$zipCode,breaks=quantile(restData$zipCode))
+table(restData$zipGroups)
+</code></pre>
+
+<pre><code class="lisp">
+<span class="list">(<span class="title">-2</span><span class="body">.<span class="number">123e+04</span>,<span class="number">2.12e+04</span>]  <span class="list">(<span class="body"><span class="number">2.12e+04</span>,<span class="number">2.122e+04</span>] <span class="list">(<span class="body"><span class="number">2.122e+04</span>,<span class="number">2.123e+04</span>] <span class="list">(<span class="body"><span class="number">2.123e+04</span>,<span class="number">2.129e+04</span>] 
+                  <span class="number">337</span>                   <span class="number">375</span>                   <span class="number">282</span>                   <span class="number">332</span> 
+</span></span></span></span></span></span></span></span></code></pre>
+
+<pre><code class="r">table(restData$zipGroups,restData$zipCode)
+</code></pre>
+
+<pre><code class="lisp">
+                        <span class="number">-21226</span> <span class="number">21201</span> <span class="number">21202</span> <span class="number">21205</span> <span class="number">21206</span> <span class="number">21207</span> <span class="number">21208</span> <span class="number">21209</span> <span class="number">21210</span> <span class="number">21211</span> <span class="number">21212</span> <span class="number">21213</span>
+  <span class="list">(<span class="title">-2</span><span class="body">.<span class="number">123e+04</span>,<span class="number">2.12e+04</span>]      <span class="number">0</span>   <span class="number">136</span>   <span class="number">201</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>
+  <span class="list">(<span class="body"><span class="number">2.12e+04</span>,<span class="number">2.122e+04</span>]       <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>    <span class="number">27</span>    <span class="number">30</span>     <span class="number">4</span>     <span class="number">1</span>     <span class="number">8</span>    <span class="number">23</span>    <span class="number">41</span>    <span class="number">28</span>    <span class="number">31</span>
+  <span class="list">(<span class="body"><span class="number">2.122e+04</span>,<span class="number">2.123e+04</span>]      <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>
+  <span class="list">(<span class="body"><span class="number">2.123e+04</span>,<span class="number">2.129e+04</span>]      <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>
+
+                        <span class="number">21214</span> <span class="number">21215</span> <span class="number">21216</span> <span class="number">21217</span> <span class="number">21218</span> <span class="number">21220</span> <span class="number">21222</span> <span class="number">21223</span> <span class="number">21224</span> <span class="number">21225</span> <span class="number">21226</span> <span class="number">21227</span>
+  <span class="list">(<span class="title">-2</span><span class="body">.<span class="number">123e+04</span>,<span class="number">2.12e+04</span>]     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>
+  <span class="list">(<span class="body"><span class="number">2.12e+04</span>,<span class="number">2.122e+04</span>]     <span class="number">17</span>    <span class="number">54</span>    <span class="number">10</span>    <span class="number">32</span>    <span class="number">69</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>
+  <span class="list">(<span class="body"><span class="number">2.122e+04</span>,<span class="number">2.123e+04</span>]     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">1</span>     <span class="number">7</span>    <span class="number">56</span>   <span class="number">199</span>    <span class="number">19</span>     <span class="number">0</span>     <span class="number">0</span>
+  <span class="list">(<span class="body"><span class="number">2.123e+04</span>,<span class="number">2.129e+04</span>]     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>    <span class="number">18</span>     <span class="number">4</span>
+
+                        <span class="number">21229</span> <span class="number">21230</span> <span class="number">21231</span> <span class="number">21234</span> <span class="number">21237</span> <span class="number">21239</span> <span class="number">21251</span> <span class="number">21287</span>
+  <span class="list">(<span class="title">-2</span><span class="body">.<span class="number">123e+04</span>,<span class="number">2.12e+04</span>]     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>
+  <span class="list">(<span class="body"><span class="number">2.12e+04</span>,<span class="number">2.122e+04</span>]      <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>
+  <span class="list">(<span class="body"><span class="number">2.122e+04</span>,<span class="number">2.123e+04</span>]     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>
+  <span class="list">(<span class="body"><span class="number">2.123e+04</span>,<span class="number">2.129e+04</span>]    <span class="number">13</span>   <span class="number">156</span>   <span class="number">127</span>     <span class="number">7</span>     <span class="number">1</span>     <span class="number">3</span>     <span class="number">2</span>     <span class="number">1</span>
+</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide data-total-slides="15" data-slide-num="9" class="" id="slide-8" style="background:;">
+  <hgroup>
+    <h2>Easier cutting</h2>
+  </hgroup>
+  <article>
+    <pre><code class="r"><span class="keyword">library</span>(Hmisc)
+restData$zipGroups = cut2(restData$zipCode,g=<span class="number">4</span>)
+table(restData$zipGroups)
+</code></pre>
+
+<pre><code class="json">
+[-<span class="number">21226</span>,<span class="number">21205</span>) [ <span class="number">21205</span>,<span class="number">21220</span>) [ <span class="number">21220</span>,<span class="number">21227</span>) [ <span class="number">21227</span>,<span class="number">21287</span>] 
+           <span class="number">338</span>            <span class="number">375</span>            <span class="number">300</span>            <span class="number">314</span> 
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide data-total-slides="15" data-slide-num="10" class="" id="slide-9" style="background:;">
+  <hgroup>
+    <h2>Creating factor variables</h2>
+  </hgroup>
+  <article>
+    <pre><code class="r">restData$zcf &lt;- factor(restData$zipCode)
+restData$zcf[<span class="number">1</span>:<span class="number">10</span>]
+</code></pre>
+
+<pre><code class="r"> [<span class="number">1</span>] <span class="number">21206</span> <span class="number">21231</span> <span class="number">21224</span> <span class="number">21211</span> <span class="number">21223</span> <span class="number">21218</span> <span class="number">21205</span> <span class="number">21211</span> <span class="number">21205</span> <span class="number">21231</span>
+<span class="number">32</span> Levels: -<span class="number">21226</span> <span class="number">21201</span> <span class="number">21202</span> <span class="number">21205</span> <span class="number">21206</span> <span class="number">21207</span> <span class="number">21208</span> <span class="number">21209</span> <span class="number">21210</span> <span class="number">21211</span> <span class="number">21212</span> <span class="number">21213</span> <span class="number">21214</span> <span class="keyword">...</span> <span class="number">21287</span>
+</code></pre>
+
+<pre><code class="r">class(restData$zcf)
+</code></pre>
+
+<pre><code class="json">[<span class="number">1</span>] <span class="string">"factor"</span>
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide data-total-slides="15" data-slide-num="11" class="" id="slide-10" style="background:;">
+  <hgroup>
+    <h2>Levels of factor variables</h2>
+  </hgroup>
+  <article>
+    <pre><code class="r">yesno &lt;- sample(c(<span class="string">"yes"</span>,<span class="string">"no"</span>),size=<span class="number">10</span>,replace=<span class="literal">TRUE</span>)
+yesnofac = factor(yesno,levels=c(<span class="string">"yes"</span>,<span class="string">"no"</span>))
+relevel(yesnofac,ref=<span class="string">"yes"</span>)
+</code></pre>
+
+<pre><code class="coffeescript"> [<span class="number">1</span>] <span class="literal">yes</span> <span class="literal">yes</span> <span class="literal">yes</span> <span class="literal">yes</span> <span class="literal">no</span>  <span class="literal">yes</span> <span class="literal">yes</span> <span class="literal">yes</span> <span class="literal">no</span>  <span class="literal">no</span> 
+Levels: <span class="literal">yes</span> <span class="literal">no</span>
+</code></pre>
+
+<pre><code class="r">as.numeric(yesnofac)
+</code></pre>
+
+<pre><code class="json"> [<span class="number">1</span>] <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">2</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">2</span> <span class="number">2</span>
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide data-total-slides="15" data-slide-num="12" class="" id="slide-11" style="background:;">
+  <hgroup>
+    <h2>Cutting produces factor variables</h2>
+  </hgroup>
+  <article>
+    <pre><code class="r"><span class="keyword">library</span>(Hmisc)
+restData$zipGroups = cut2(restData$zipCode,g=<span class="number">4</span>)
+table(restData$zipGroups)
+</code></pre>
+
+<pre><code class="json">
+[-<span class="number">21226</span>,<span class="number">21205</span>) [ <span class="number">21205</span>,<span class="number">21220</span>) [ <span class="number">21220</span>,<span class="number">21227</span>) [ <span class="number">21227</span>,<span class="number">21287</span>] 
+           <span class="number">338</span>            <span class="number">375</span>            <span class="number">300</span>            <span class="number">314</span> 
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide data-total-slides="15" data-slide-num="13" class="" id="slide-12" style="background:;">
+  <hgroup>
+    <h2>Using the mutate function</h2>
+  </hgroup>
+  <article>
+    <pre><code class="r"><span class="keyword">library</span>(Hmisc); <span class="keyword">library</span>(plyr)
+restData2 = mutate(restData,zipGroups=cut2(zipCode,g=<span class="number">4</span>))
+table(restData2$zipGroups)
+</code></pre>
+
+<pre><code class="json">
+[-<span class="number">21226</span>,<span class="number">21205</span>) [ <span class="number">21205</span>,<span class="number">21220</span>) [ <span class="number">21220</span>,<span class="number">21227</span>) [ <span class="number">21227</span>,<span class="number">21287</span>] 
+           <span class="number">338</span>            <span class="number">375</span>            <span class="number">300</span>            <span class="number">314</span> 
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide data-total-slides="15" data-slide-num="14" class="" id="slide-13" style="background:;">
+  <hgroup>
+    <h2>Common transforms</h2>
+  </hgroup>
+  <article>
+    <ul>
+<li><code>abs(x)</code> absolute value</li>
+<li><code>sqrt(x)</code> square root</li>
+<li><code>ceiling(x)</code> ceiling(3.475) is 4</li>
+<li><code>floor(x)</code> floor(3.475) is 3</li>
+<li><code>round(x,digits=n)</code> roun(3.475,digits=2) is 3.48</li>
+<li><code>signif(x,digits=n)</code> signif(3.475,digits=2) is 3.5</li>
+<li><code>cos(x), sin(x)</code> etc.</li>
+<li><code>log(x)</code> natural logarithm</li>
+<li><code>log2(x)</code>, <code>log10(x)</code> other common logs</li>
+<li><code>exp(x)</code> exponentiating x</li>
+</ul>
+
+<p><a href="http://www.biostat.jhsph.edu/%7Eajaffe/lec_winterR/Lecture%202.pdf">http://www.biostat.jhsph.edu/~ajaffe/lec_winterR/Lecture%202.pdf</a>
+<a href="http://statmethods.net/management/functions.html">http://statmethods.net/management/functions.html</a></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide data-total-slides="15" data-slide-num="15" class="" id="slide-14" style="background:;">
+  <hgroup>
+    <h2>Notes and further reading</h2>
+  </hgroup>
+  <article>
+    <ul>
+<li>A tutorial from the developer of plyr - <a href="http://plyr.had.co.nz/09-user/">http://plyr.had.co.nz/09-user/</a></li>
+<li>Andrew Jaffe's R notes <a href="http://www.biostat.jhsph.edu/%7Eajaffe/lec_winterR/Lecture%202.pdf">http://www.biostat.jhsph.edu/~ajaffe/lec_winterR/Lecture%202.pdf</a></li>
+<li></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  <div id="prev-slide-area" class="slide-area"></div><div id="next-slide-area" class="slide-area"></div></slides>
+
+  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+
+
+<script src="Creating%20new%20variables_files/jquery-1.js"></script>
+<script>window.jQuery || document.write('<script src="../../libraries/widgets/quiz/js/jquery-1.7.min.js"><\/script>')</script>
+<!-- Load Javascripts for Widgets -->
+<!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+<script type="text/x-mathjax-config;executed=true">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript" src="Creating%20new%20variables_files/MathJax.js"></script>
+<!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script> -->
+<script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="../../libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<!-- LOAD HIGHLIGHTER JS FILES -->
+<script src="Creating%20new%20variables_files/highlight.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<!-- DONE LOADING HIGHLIGHTER JS FILES -->
+</body><!-- Grab CDN jQuery, fall back to local if offline --></html>
